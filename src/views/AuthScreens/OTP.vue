@@ -1,5 +1,5 @@
 <template>
-  <div class="signup">
+  <div class="app">
     <div class="body">
       <div class="logo">
         <img src="../../assets/Logo.svg" alt="" />
@@ -34,46 +34,8 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-$body-accent: #f4f7fc;
-$heading-text: #0b2253;
-$heading-text-size: 46px;
-$medium-text-size: 30px;
-$small-text-size: 14px;
-$grey-text: #b3becf;
-$grey-text2: #6d7a98;
-$label-font-size: 14px;
-$blue: #1f6aec;
-$border: #dee3eb;
+@import "@/assets/_shared.scss";
 
-.signup {
-  background-color: $body-accent;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .body {
-    width: 80vw;
-    height: 90vh;
-    margin: 0 auto;
-    display: block;
-  }
-}
-.title-card {
-  margin-top: 3rem;
-  h1 {
-    color: $heading-text;
-    font-size: $heading-text-size;
-    font-style: bold;
-    line-height: 48px;
-  }
-  p {
-    color: $grey-text;
-    font-style: medium;
-    font-size: $medium-text-size;
-    line-height: 42px;
-  }
-}
 form {
   display: flex;
   justify-content: center;
@@ -120,6 +82,33 @@ form {
           text-align: center;
         }
       }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .content .form-card {
+    width: 90%;
+    form {
+      width: 100%;
+    }
+  }
+  .app .body {
+    width: 100%;
+    height: 100%;
+  }
+  .title-card {
+    padding: 0 15px;
+
+    margin-bottom: 25px;
+    p {
+      font-size: 26px;
     }
   }
 }

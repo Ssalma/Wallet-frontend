@@ -1,0 +1,91 @@
+@import "@/assets/_shared.scss";
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+  .form-card {
+    width: 528px;
+    height: 554px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #dee3eb;
+    display: flex;
+    justify-content: center;
+    form {
+      width: 100%;
+      padding: 0 32px;
+      height: 90%;
+      margin: auto;
+      display: grid;
+      .name {
+        display: flex;
+        justify-content: space-between;
+        .input {
+          width: 100%;
+          height: 48px;
+          padding: 16px;
+          border: 1px solid #dee3eb;
+          border-radius: 4px;
+        }
+      }
+      .fname {
+        width: 48%;
+      }
+    }
+  }
+}
+.input_wrapper {
+  position: relative;
+}
+.input_icon {
+  position: absolute;
+  right: 20px;
+  bottom: 34px;
+  cursor: pointer;
+}
+
+#password::placeholder {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+label {
+  font-size: $label-font-size;
+  color: $grey-text2;
+}
+::placeholder {
+  color: $heading-text;
+  font-size: $small-text-size;
+  line-height: 16px;
+  letter-spacing: 0.1;
+}
+
+input {
+  width: 100%;
+  height: 48px;
+  padding: 16px;
+  border: 1px solid #dee3eb;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .content .form-card {
+    width: 90%;
+    form {
+      width: 100%;
+    }
+  }
+  .app {
+    height: 120vh;
+  }
+  .app .body {
+    width: 100%;
+    height: 100%;
+  }
+}

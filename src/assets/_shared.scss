@@ -1,0 +1,102 @@
+$body-accent: #f4f7fc;
+$heading-text: #0b2253;
+$heading-text-size: 46px;
+$medium-text-size: 30px;
+$small-text-size: 14px;
+$grey-text: #b3becf;
+$grey-text2: #6d7a98;
+$label-font-size: 14px;
+$blue: #1f6aec;
+$border: #dee3eb;
+
+%form-p-text {
+  color: $grey-text2;
+  font-size: $small-text-size;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+}
+
+.app {
+  background-color: $body-accent;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .body {
+    width: 80vw;
+    height: 90vh;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+.logo {
+  img {
+    width: 42.61px;
+    height: 37px;
+  }
+}
+
+.title-card {
+  margin-top: 3rem;
+  h1 {
+    color: $heading-text;
+    font-size: $heading-text-size;
+    font-style: bold;
+    line-height: 48px;
+  }
+  p {
+    color: $grey-text;
+    font-style: medium;
+    font-size: $medium-text-size;
+    line-height: 42px;
+    margin-top: 24px;
+  }
+}
+.btn {
+  width: 464px;
+  height: 48px;
+  background-color: $blue;
+  color: #ffffff;
+  border-radius: 8px;
+  font-style: bold;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  border: none;
+}
+.question {
+  @extend %form-p-text;
+}
+a {
+  text-decoration: none;
+  color: $blue;
+}
+
+@media screen and (max-width: 768px) {
+  // .app {
+  //   height: 120vh;
+  // }
+  .title-card {
+    margin-top: 20px;
+    h1 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+  }
+  .btn {
+    width: 100%;
+  }
+  .logo {
+    img {
+      position: relative;
+      top: 20px;
+      left: 20px;
+    }
+  }
+}

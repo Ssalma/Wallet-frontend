@@ -37,6 +37,59 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AuthScreens/OTP.vue"),
   },
+  {
+    path: "/login",
+    name: "Login",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AuthScreens/Login.vue"),
+  },
+  {
+    path: "/forgot-password",
+    name: "ForgotPassword",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/AuthScreens/ForgotPassword.vue"
+      ),
+  },
+  {
+    path: "/check-inbox",
+    name: "Check-Inbox",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/AuthScreens/CheckInbox.vue"
+      ),
+  },
+  {
+    path: "/reset-password",
+    name: "Reset-Password",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/AuthScreens/ResetPassword.vue"
+      ),
+  },
+  {
+    path: "/create-pin",
+    name: "CreatePin",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "about" */ "../views/AuthScreens/OTPCreatePin.vue"
+      ),
+  },
 ];
 
 const router = new VueRouter({
