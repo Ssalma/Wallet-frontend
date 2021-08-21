@@ -11,20 +11,16 @@ const routes = [
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/welcome",
+    name: "Landing-page",
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Landing-page.vue"),
   },
   {
     path: "/signup",
     name: "Signup",
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AuthScreens/Signup.vue"),
   },
@@ -32,25 +28,19 @@ const routes = [
     path: "/one-time-password",
     name: "OTP",
     // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AuthScreens/OTP.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AuthScreens/Login.vue"),
   },
   {
     path: "/forgot-password",
     name: "ForgotPassword",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(
@@ -60,9 +50,6 @@ const routes = [
   {
     path: "/check-inbox",
     name: "Check-Inbox",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/AuthScreens/CheckInbox.vue"
@@ -71,9 +58,6 @@ const routes = [
   {
     path: "/reset-password",
     name: "Reset-Password",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/AuthScreens/ResetPassword.vue"
@@ -82,13 +66,31 @@ const routes = [
   {
     path: "/create-pin",
     name: "CreatePin",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "about" */ "../views/AuthScreens/OTPCreatePin.vue"
       ),
+  },
+  {
+    path: "/dashboard",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Dashboard/Index.vue"),
+    children: [
+      {
+        path: "",
+        name: "Dashboard",
+        component: () =>
+          import(/* webpackChunkName: "about" */ "../views/Dashboard/Home.vue"),
+      },
+      {
+        path: "transactions",
+        name: "Transactions",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "../views/Dashboard/Transactions.vue"
+          ),
+      },
+    ],
   },
 ];
 

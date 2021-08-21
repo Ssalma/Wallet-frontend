@@ -105,7 +105,6 @@ form {
   }
   .title-card {
     padding: 0 15px;
-
     margin-bottom: 25px;
     p {
       font-size: 26px;

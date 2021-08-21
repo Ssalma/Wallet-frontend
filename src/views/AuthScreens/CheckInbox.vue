@@ -99,7 +99,6 @@ export default {};
   }
   .title-card {
     padding: 0 15px;
-
     margin-bottom: 15px;
     p {
       font-size: 25px;

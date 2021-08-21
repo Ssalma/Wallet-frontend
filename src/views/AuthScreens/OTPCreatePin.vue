@@ -39,7 +39,7 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/_shared.scss";
 .content {
   display: flex;
@@ -110,7 +110,6 @@ form {
   }
   .title-card {
     padding: 0 15px;
-
     margin-bottom: 25px;
     p {
       font-size: 26px;

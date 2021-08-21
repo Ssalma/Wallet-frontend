@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="w-logo_wrapper">
-      <img src="../../assets/wallet-logo.svg" alt="" />
+      <img src="../assets/wallet-logo.svg" alt="" />
     </div>
     <div class="text_wrapper">
       <h1>Wallet</h1>
