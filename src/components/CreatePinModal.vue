@@ -82,7 +82,7 @@ export default {
 }
 
 .btn {
-  width: 432px;
+  max-width: 432px;
 }
 
 .form-wrapper {
@@ -103,6 +103,29 @@ form {
     justify-content: center;
     align-items: center;
     margin: 24px 0 24px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    justify-content: center;
+    align-items: center;
+    .white-layer {
+      width: 290px;
+      height: 50vh;
+    }
+  }
+  form {
+    width: 100%;
+    input {
+      margin-right: 0;
+    }
+  }
+  form .small-input-box {
+    justify-content: space-between;
+  }
+  .form-wrapper {
+    margin-top: 10px;
   }
 }
 </style>

@@ -26,4 +26,10 @@ export default {
   margin-top: 40px;
   height: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .transaction_wrapper {
+    margin-top: 30px;
+  }
+}
 </style>

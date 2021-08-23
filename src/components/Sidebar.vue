@@ -7,11 +7,11 @@
       </div>
       <div class="link_wrapper">
         <img src="../assets/home-icon.svg" alt="icon" />
-        <router-link to="/dashboard"><p>Home</p></router-link>
+        <router-link :to="{ name: 'Dashboard' }"><p>Home</p></router-link>
       </div>
       <div class="link_wrapper">
         <img src="../assets/history-icon.svg" alt="icon" />
-        <router-link to="dashboard/transactions"
+        <router-link :to="{ name: 'Transactions' }"
           ><p>Transactions</p></router-link
         >
       </div>

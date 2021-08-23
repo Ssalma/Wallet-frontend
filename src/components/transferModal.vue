@@ -103,7 +103,8 @@ export default {
   }
 }
 .btn {
-  width: 432px;
+  width: 100%;
+  max-width: 432px;
 }
 
 #amount-input::placeholder {
@@ -118,7 +119,8 @@ export default {
 form {
   color: $heading-text;
   input {
-    width: 432px;
+    width: 100%;
+    max-width: 432px;
     height: 48px;
     padding: 16px;
     border: 1px solid #dee3eb;
@@ -160,6 +162,20 @@ form {
   }
   .span-naira {
     margin-right: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal {
+    justify-content: center;
+    align-items: center;
+    .white-layer {
+      width: 280px;
+      height: 80vh;
+    }
+  }
+  form {
+    width: 100%;
   }
 }
 </style>

@@ -1,15 +1,53 @@
 <template>
   <main>
-    <Sidebar />
+    <Sidebar class="sidebar" />
     <div class="dashboard-content">
       <div class="nav">
-        <img class="notification" src="../../assets/notification.svg" alt="" />
+        <!-- <div class="ham-wrapper">
+          <img src="../../assets/hamburger.svg" alt="" />
+        </div> -->
+        <label class="ham-wrapper" for="hamburger"
+          ><img src="../../assets/hamburger.svg" alt=""
+        /></label>
+        <input type="checkbox" name="" id="hamburger" />
+        <div class="menu-nav">
+          <div class="link_wrapper">
+            <img src="../../assets/home-icon.svg" alt="icon" />
+            <router-link :to="{ name: 'Dashboard' }"><p>Home</p></router-link>
+          </div>
+          <div class="link_wrapper">
+            <img src="../../assets/history-icon.svg" alt="icon" />
+            <router-link :to="{ name: 'Transactions' }"
+              ><p>Transactions</p></router-link
+            >
+          </div>
+          <div class="link_wrapper">
+            <img src="../../assets/profile-icon.svg" alt="icon" />
+            <router-link to=""><p>Profile</p></router-link>
+          </div>
+        </div>
+        <img
+          @click="closePopup = true"
+          class="notification"
+          src="../../assets/notification.svg"
+          alt=""
+        />
+
         <p class="user-name">Kingsley Omin</p>
-        <div class="grey-circle">
+        <div @click="showProfile = true" class="grey-circle">
           <p class="abbreviation">KO</p>
         </div>
+        <div class="log-out" v-if="showProfile">
+          <div class="profile-picture"></div>
+          <p>Kingsley Omin</p>
+          <button id="logout-btn">Log Out</button>
+        </div>
         <span class=""
-          ><img class="arrow" src="../../assets/arrow.svg" alt=""
+          ><img
+            @click="showProfile = false"
+            class="arrow"
+            src="../../assets/arrow.svg"
+            alt=""
         /></span>
       </div>
       <div class="content_wrapper">
@@ -21,7 +59,11 @@
           <button @click="showModal = true" class="transfer-funds">
             Transfer Funds
           </button>
-          <button @click="showFundWalletModal = true" class="fund-wallet">
+          <button
+            @click="showFundWalletModal = true"
+            class="fund-wallet"
+            id="btn"
+          >
             Fund Wallet
           </button>
         </div>
@@ -64,12 +106,14 @@ import Sidebar from "@/components/Sidebar.vue";
 import TransferModal from "@/components/transferModal.vue";
 import FundModal from "@/components/FundWalletModal.vue";
 import CreatePinModal from "@/components/CreatePinModal.vue";
+
 export default {
   name: "sidebar",
   components: {
     TransferModal,
     FundModal,
     CreatePinModal,
+
     Sidebar,
   },
 
@@ -78,7 +122,9 @@ export default {
       showModal: false,
       showFundWalletModal: false,
       showCreatePinModal: false,
-      closePopup: true,
+      showFilterModal: false,
+      showProfile: false,
+      closePopup: false,
     };
   },
 };
@@ -94,8 +140,39 @@ main {
   color: $heading-text;
 
   .dashboard-content {
-    overflow-y: auto;
     padding: 0 32px 0 32px;
+  }
+}
+.menu-nav {
+  display: none;
+}
+.ham-wrapper {
+  display: none;
+}
+.log-out {
+  background-color: #ffffff;
+  width: 160px;
+  height: 170px;
+  padding: 20px;
+  position: absolute;
+  top: 50px;
+  color: $heading-text;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 10px;
+  border-radius: 5px;
+  border: 1px solid $blue;
+  p {
+    font-weight: 500;
+  }
+  .profile-picture {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #ffffff;
+    border: 1px solid $heading-text;
   }
 }
 .popup-wrapper {
@@ -147,6 +224,7 @@ main {
     width: 24px;
     height: 24px;
     margin-right: 3rem;
+    cursor: pointer;
   }
   .user-name {
     color: $dash-grey-text;
@@ -163,6 +241,7 @@ main {
   justify-content: center;
   align-items: center;
   margin-right: 5px;
+  cursor: pointer;
 
   .abbreviation {
     font-size: 12px;
@@ -175,6 +254,7 @@ main {
 .arrow {
   width: 12px;
   height: 6px;
+  cursor: pointer;
 }
 
 %btns {
@@ -193,6 +273,14 @@ main {
 }
 .fund-wallet {
   @extend %btns;
+  color: #ffffff;
+  background-color: $blue;
+  border: none;
+}
+#logout-btn {
+  @extend %btns;
+  width: 100px;
+  height: 35px;
   color: #ffffff;
   background-color: $blue;
   border: none;
@@ -236,5 +324,97 @@ main {
 }
 .naira-sign {
   content: "\20A6";
+}
+
+// menu-nav styles
+//  .link_wrapper {
+//    width: 100%;
+//     max-width: 216px;
+//     height: 40px;
+//     display: flex;
+//     align-items: center;
+//     padding-left: 16px;
+//     margin: 0 0 8px 16px;
+//     a {
+//       text-decoration: none;
+//       color: #ffffff;
+//     }
+//     p {
+//       font-size: 14px;
+//       line-height: 16px;
+//       cursor: pointer;
+//     }
+//     img {
+//       width: 16px;
+//       height: 16px;
+//       margin-right: 12px;
+//     }
+//   }
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+  }
+  .content_wrapper {
+    flex-direction: column;
+  }
+  .btn_wrapper {
+    display: flex;
+    margin-top: 24px;
+  }
+  .balance_wrapper {
+    margin-top: 24px;
+    .balance {
+      width: 46.5%;
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .nav {
+    margin-bottom: 15px;
+  }
+
+  .popup-wrapper {
+    width: 160px;
+    height: 100px;
+    right: 30px;
+    padding: 9px 0 0 8px;
+    .create-pin {
+      margin-bottom: 5px;
+      p {
+        font-size: $small-text-size;
+      }
+      img {
+        margin-right: 7px;
+      }
+      .close {
+        img {
+          right: -20px;
+          top: -5px;
+        }
+      }
+    }
+  }
+  .note-text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    margin-left: 33px;
+  }
+
+  .ham-wrapper {
+    display: block;
+    margin-right: 6rem;
+  }
+  #hamburger {
+    display: none;
+  }
 }
 </style>

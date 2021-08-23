@@ -90,6 +90,14 @@ const routes = [
             /* webpackChunkName: "about" */ "../views/Dashboard/Transactions.vue"
           ),
       },
+      {
+        path: "alltransactions",
+        name: "AllTransactions",
+        component: () =>
+          import(
+            /* webpackChunkName: "about" */ "../views/Dashboard/AllTransactions.vue"
+          ),
+      },
     ],
   },
 ];

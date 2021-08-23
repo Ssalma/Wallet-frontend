@@ -2,7 +2,7 @@
   <div class="modal" v-if="closeModal">
     <div class="white-layer">
       <div class="transfer">
-        <p>Fund Wallet</p>
+        <p>Filter</p>
         <span
           ><img
             @click="closeModal = false"
@@ -14,23 +14,30 @@
       <div class="form-wrapper">
         <form>
           <div>
+            <div class="input_wrapper">
+              <label id="label" for="">Transaction Type</label>
+              <select name="" id="">
+                <option value="">Wallet Transfer</option>
+                <option value="">Wallet Deposit</option>
+              </select>
+            </div>
+            <div class="date-input-wrapper">
+              <div>
+                <label for="">Start Date</label>
+                <input type="date" name="" id="" placeholder="20-02-2021" />
+              </div>
+              <div>
+                <label for="">End Date</label>
+                <input type="date" name="" id="" placeholder="20-02-2021" />
+              </div>
+            </div>
             <div class="radio-wrapper">
-              <p>Select Wallet Type</p>
-              <input type="radio" name="naira" id="" />
-              <span class="span-naira">Naira</span>
-              <input type="radio" name="dollar" id="" /> <span>Dollar</span>
+              <p>Transaction Status</p>
+              <input type="radio" name="" id="" />
+              <span class="span-successful">Successful</span>
+              <input type="radio" name="" id="" /> <span>Failed</span>
             </div>
-            <div class="input__wrapper">
-              <label id="label" for="">Amount</label>
-              <input
-                type="text"
-                name="amount"
-                id="amount-input"
-                placeholder="00.00"
-                class="inp"
-              />
-            </div>
-            <button class="btn" id="transfer-btn">Fund Wallet</button>
+            <button class="btn" id="search-btn">Apply Search</button>
           </div>
         </form>
       </div>
@@ -82,14 +89,9 @@ export default {
     }
   }
 }
-
 .btn {
   width: 100%;
   max-width: 432px;
-}
-
-#amount-input::placeholder {
-  content: "\20A6";
 }
 
 .form-wrapper {
@@ -99,19 +101,21 @@ export default {
 
 form {
   color: $heading-text;
-  input {
-    width: 100%;
-    max-width: 432px;
+  select {
+    width: 432px;
     height: 48px;
-    padding: 16px;
+    padding: 12px;
     border: 1px solid #dee3eb;
     border-radius: 4px;
     cursor: pointer;
-    &::placeholder {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 400;
+    color: $heading-text;
+    option {
+      font-size: 16px;
+      font-weight: 400;
       color: $heading-text;
-      font-size: $small-text-size;
-      line-height: 16px;
-      letter-spacing: 0.1;
     }
   }
   label {
@@ -119,8 +123,19 @@ form {
     color: $grey-text2;
   }
 }
-.inp {
-  margin: 8px 0 24px 0;
+input {
+  margin-top: 8px;
+}
+.date-input-wrapper {
+  display: flex;
+  margin: 24px 0 32px 0;
+  input {
+    width: 204px;
+    height: 48px;
+    border: 1px solid #dee3eb;
+    border-radius: 4px;
+    padding: 16px;
+  }
 }
 .radio-wrapper {
   margin-bottom: 32px;
@@ -141,7 +156,7 @@ form {
     position: relative;
     top: -4px;
   }
-  .span-naira {
+  .span-successful {
     margin-right: 80px;
   }
 }
@@ -152,11 +167,22 @@ form {
     align-items: center;
     .white-layer {
       width: 280px;
-      height: 55vh;
+      height: 80vh;
     }
   }
   form {
     width: 100%;
+    select {
+      width: 100%;
+    }
+  }
+  .date-input-wrapper {
+    display: grid;
+    grid-gap: 10px;
+  }
+
+  .radio-wrapper .span-successful {
+    margin-right: 20px;
   }
 }
 </style>
