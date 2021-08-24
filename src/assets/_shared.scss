@@ -10,6 +10,7 @@ $label-font-size: 14px;
 $blue: #1f6aec;
 $border: #dee3eb;
 $dash-grey-text: #3a434b;
+$red-accent: #700f0f;
 
 %form-p-text {
   color: $grey-text2;
@@ -78,9 +79,6 @@ a {
 }
 
 @media screen and (max-width: 768px) {
-  // .app {
-  //   height: 120vh;
-  // }
   .title-card {
     margin-top: 20px;
     h1 {

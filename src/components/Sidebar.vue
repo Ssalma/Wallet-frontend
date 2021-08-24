@@ -60,6 +60,10 @@ aside {
     align-items: center;
     padding-left: 16px;
     margin: 0 0 8px 16px;
+    &:focus-within {
+      background-color: rgba(139, 149, 171, 0.24);
+      border-radius: 4px;
+    }
     a {
       text-decoration: none;
       color: #ffffff;

@@ -156,16 +156,18 @@
           </tbody>
         </table>
         <div class="footer">
-          <p>Showing page <span>1</span> of <span>10</span></p>
-          <button class="prev" id="prev">Prev</button>
-          <div class="but-wrapper">
-            <button class="but">1</button>
-            <button class="but">2</button>
-            <button class="but">3</button>
-            <button class="but">...</button>
-            <button class="but">10</button>
+          <p>Showing <span>page 1</span> <span> of 10</span></p>
+          <div class="nav-btn-wrapper">
+            <button class="prev" id="prev">Prev</button>
+            <div class="but-wrapper">
+              <button class="but">1</button>
+              <button class="but">2</button>
+              <button class="but">3</button>
+              <button class="but">...</button>
+              <button class="but">10</button>
+            </div>
+            <button class="prev" id="next">Next</button>
           </div>
-          <button class="prev" id="next">Next</button>
         </div>
       </div>
     </div>
@@ -197,11 +199,17 @@ export default {
   right: 0;
 }
 .footer {
+  width: 100%;
   bottom: auto;
   display: flex;
   margin-top: 20px;
   p {
-    margin-right: 715px;
+    margin-right: 690px;
+    font-size: $small-text-size;
+    color: $dash-grey-text;
+    span {
+      color: #0d0f11;
+    }
   }
   .prev {
     font-size: 12px;
@@ -210,6 +218,10 @@ export default {
     border: none;
     background-color: #ffffff;
     cursor: pointer;
+    &:focus {
+      background-color: rgba(47, 46, 128, 0.1);
+      color: #2f2e80;
+    }
   }
   .but {
     width: 23px;
@@ -227,10 +239,15 @@ export default {
     }
   }
 }
+.nav-btn-wrapper {
+  display: flex;
+}
 .but-wrapper {
   padding-top: 5px;
 }
 .container {
+  width: 100%;
+  max-width: 78vw;
   margin-top: 20px;
   max-height: 60vh;
   position: absolute;
@@ -273,7 +290,7 @@ export default {
   }
 }
 .search-input-wrapper {
-  margin: 0 20px 0 450px;
+  margin: 0 40px 0 424px;
 }
 .search-icon {
   position: relative;
@@ -285,10 +302,9 @@ export default {
 // transaction history style
 
 .transaction-history {
-  position: relative;
-  top: 60px;
   width: 100%;
   overflow: hidden;
+  margin-top: 20px;
   p {
     font-size: 16px;
     margin-top: 16px;
@@ -313,7 +329,7 @@ thead {
     width: 90%;
     height: 56px;
     border: none;
-
+    cursor: pointer;
     th {
       font-size: 16px;
       font-weight: 400;
@@ -323,6 +339,7 @@ thead {
   }
 }
 td {
+  cursor: pointer;
   span {
     color: $grey-text;
   }
@@ -364,7 +381,7 @@ td {
 }
 
 .failed {
-  color: #700f0f;
+  color: $red-accent;
   font-size: 12px;
 }
 .red {
@@ -385,9 +402,18 @@ td {
 
 @media screen and (max-width: 768px) {
   .transaction-history {
-    overflow: visible;
+    overflow: auto;
+    width: 100%;
     // top: 150px;
   }
+  .container {
+    width: 100%;
+    max-width: 85vw;
+  }
+  // table tr thead tbody th td {
+  //   width: 100px;
+  //   border: 1px solid red;
+  // }
 
   .search-wrapper {
     display: grid;
@@ -396,8 +422,31 @@ td {
       width: 348px;
     }
   }
+  .search-icon {
+    left: 10rem;
+    top: -14px;
+  }
   .search-input-wrapper {
     margin: 0;
+  }
+  .footer {
+    padding: 20px;
+    justify-content: space-between;
+    height: 80px;
+    p {
+      margin: 10px 0 0 0;
+    }
+    .prev {
+      font-size: 16px;
+      margin-right: 10px;
+    }
+  }
+  .nav-btn-wrapper {
+    justify-content: center;
+    align-items: center;
+  }
+  .but-wrapper {
+    display: none;
   }
 }
 </style>

@@ -58,6 +58,8 @@ export default {};
 .trans {
   margin-top: 40px;
   width: 100%;
+  // max-width: ;
+  max-height: 60vh;
   .title {
     font-size: 24px;
     font-weight: 600px;
@@ -159,11 +161,15 @@ td {
 }
 
 @media screen and (max-width: 768px) {
-  .transaction-history {
-    overflow: hidden;
+  .trans {
+    max-width: 82vw;
   }
-  table tr td {
+  .transaction-history {
+    width: 100%;
     overflow: auto;
   }
+  // table tr td {
+  //   overflow: auto;
+  // }
 }
 </style>
