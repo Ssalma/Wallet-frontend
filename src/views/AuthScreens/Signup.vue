@@ -72,7 +72,9 @@
             <div>
               <p class="question">
                 Already have an account?
-                <span style="color:#1f6aec;">Sign In</span>
+                <router-link style="color:#1f6aec" :to="{ name: 'Login' }"
+                  >Sign In</router-link
+                >
               </p>
             </div>
           </form>

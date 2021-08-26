@@ -12,6 +12,7 @@
             <img src="../../assets/home-icon.svg" alt="icon" />
             <router-link :to="{ name: 'Dashboard' }"><p>Home</p></router-link>
           </div>
+
           <div class="link_wrapper">
             <img src="../../assets/history-icon.svg" alt="icon" />
             <router-link :to="{ name: 'Transactions' }"
@@ -23,12 +24,32 @@
             <router-link to=""><p>Profile</p></router-link>
           </div>
         </div>
-        <img
-          @click="closePopup = true"
-          class="notification"
-          src="../../assets/notification.svg"
-          alt=""
-        />
+        <div class="notification-wrapper">
+          <img
+            @click="closePopup = true"
+            class="notification"
+            src="../../assets/bell.svg"
+            alt=""
+          />
+          <div class="alert"></div>
+        </div>
+
+        <div class="popup-wrapper" v-if="closePopup">
+          <div class="create-pin">
+            <img src="../../assets/createPin-icon.svg" alt="" />
+            <p @click="showCreatePinModal = true">Create Pin</p>
+            <div class="close">
+              <img
+                @click="closePopup = false"
+                src="../../assets/Close.svg"
+                alt=""
+              />
+            </div>
+          </div>
+          <p class="note-text">
+            Please create your transaction pin to activate wallet.
+          </p>
+        </div>
 
         <p class="user-name">Kingsley Omin</p>
         <div @click="showProfile = true" class="grey-circle">
@@ -55,81 +76,26 @@
             alt=""
         /></span>
       </div>
-      <div class="content_wrapper">
-        <div class="hello_wrapper">
-          <p>Hello Kingsley</p>
-          <span><img class="hand" src="../../assets/hand.svg" alt=""/></span>
-        </div>
-        <div class="btn_wrapper">
-          <button @click="showModal = true" class="transfer-funds">
-            Transfer Funds
-          </button>
-          <button
-            @click="showFundWalletModal = true"
-            class="fund-wallet"
-            id="btn"
-          >
-            Fund Wallet
-          </button>
-        </div>
-        <div class="popup-wrapper" v-if="closePopup">
-          <div class="create-pin">
-            <img src="../../assets/createPin-icon.svg" alt="" />
-            <p @click="showCreatePinModal = true">Create Pin</p>
-            <div class="close">
-              <img
-                @click="closePopup = false"
-                src="../../assets/Close.svg"
-                alt=""
-              />
-            </div>
-          </div>
-          <p class="note-text">
-            Please create your transaction pin to activate wallet.
-          </p>
-        </div>
-      </div>
-      <div class="balance_wrapper">
-        <div class="balance">
-          <p><span class="naira-sign">&#8358;</span>00.00</p>
-          <p class="currency">Naira Balance</p>
-        </div>
-        <div class="balance">
-          <p>$00.00</p>
-          <p class="currency">Dollar Balance</p>
-        </div>
-      </div>
       <router-view></router-view>
     </div>
-    <TransferModal v-if="showModal" />
-    <FundModal v-if="showFundWalletModal" />
-    <CreatePinModal v-if="showCreatePinModal" />
+    <CreatePinModal v-if="showCreatePinModal" id="modal" />
   </main>
 </template>
 <script>
 import Sidebar from "@/components/Sidebar.vue";
-import TransferModal from "@/components/transferModal.vue";
-import FundModal from "@/components/FundWalletModal.vue";
 import CreatePinModal from "@/components/CreatePinModal.vue";
-
 export default {
   name: "sidebar",
   components: {
-    TransferModal,
-    FundModal,
     CreatePinModal,
-
     Sidebar,
   },
 
   data() {
     return {
-      showModal: false,
-      showFundWalletModal: false,
-      showCreatePinModal: false,
-      showFilterModal: false,
       showProfile: false,
       closePopup: false,
+      showCreatePinModal: false,
     };
   },
 };
@@ -220,6 +186,33 @@ main {
 .hide {
   display: none;
 }
+
+.note-text {
+  font-size: $small-text-size;
+  font-weight: 400;
+  line-height: 20px;
+  margin-left: 42px;
+}
+.nav {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  .notification {
+    width: 24px;
+    height: 24px;
+    margin-right: 3rem;
+    cursor: pointer;
+  }
+  .user-name {
+    color: $dash-grey-text;
+    font-size: $small-text-size;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+}
+
 .popup-wrapper {
   width: 320px;
   height: 111px;
@@ -229,6 +222,7 @@ main {
   top: 55px;
   border-top: 2px solid $blue;
   padding: 18px 0 0 16px;
+  z-index: 9;
 
   .create-pin {
     display: flex;
@@ -253,28 +247,48 @@ main {
     }
   }
 }
-.note-text {
-  font-size: $small-text-size;
-  font-weight: 400;
-  line-height: 20px;
-  margin-left: 42px;
-}
-.nav {
-  width: 100%;
-  height: 64px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  .notification {
-    width: 24px;
-    height: 24px;
-    margin-right: 3rem;
-    cursor: pointer;
+
+.notification-wrapper {
+  position: relative;
+  .alert {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #d66f0f;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    top: 0;
+    right: 47px;
   }
-  .user-name {
-    color: $dash-grey-text;
-    font-size: $small-text-size;
-    margin-right: 8px;
+  .notification {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes shake {
+    10%,
+    90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+      transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
   }
 }
 .grey-circle {
@@ -302,51 +316,6 @@ main {
   cursor: pointer;
 }
 
-.hand {
-  animation-name: wave-animation;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  transform-origin: 70% 70%;
-  display: inline-block;
-  cursor: pointer;
-  &:hover {
-    width: 40px;
-    height: 40px;
-  }
-}
-@keyframes wave-animation {
-  //  20% { transform: rotate(-8.0deg) }
-  //  30% { transform: rotate(14.0deg) }
-  40% {
-    transform: rotate(60deg);
-  }
-  //  50% { transform: rotate(10.0deg) }
-  //  60% { transform: rotate( 0.0deg) }
-}
-
-%btns {
-  width: 167px;
-  height: 48px;
-  border-radius: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: rgba($heading-text, 0.2);
-  }
-}
-
-.transfer-funds {
-  @extend %btns;
-  color: $blue;
-  background-color: #ffffff;
-  border: 1px solid $blue;
-  margin-right: 20px;
-}
-.fund-wallet {
-  @extend %btns;
-  color: #ffffff;
-  background-color: $blue;
-  border: none;
-}
 #logout-btn {
   @extend %btns;
   width: 100px;
@@ -354,55 +323,6 @@ main {
   color: #ffffff;
   background-color: $blue;
   border: none;
-}
-
-.content_wrapper {
-  width: 100%;
-  display: flex;
-  margin-bottom: 16px;
-}
-.balance_wrapper {
-  width: 100%;
-  height: 96px;
-  display: flex;
-  justify-content: space-between;
-}
-.btn_wrapper {
-  display: flex;
-}
-.balance {
-  width: 100%;
-  max-width: 552px;
-  height: 96px;
-  padding: 24px;
-  border: 1px solid $border;
-  border-radius: 8px;
-  p {
-    font-size: $normal-text-size;
-    font-weight: 600;
-  }
-  .currency {
-    color: $grey-text2;
-    font-size: $small-text-size;
-    font-weight: 400;
-  }
-}
-
-.hello_wrapper {
-  width: 100%;
-  display: flex;
-  p {
-    font-size: $normal-text-size;
-    font-weight: 600;
-    margin-right: 10px;
-    cursor: pointer;
-    &:hover {
-      text-shadow: 1px 1px $grey-text;
-    }
-  }
-}
-.naira-sign {
-  content: "\20A6";
 }
 
 // menu-nav styles
@@ -438,25 +358,7 @@ main {
   main {
     grid-template-columns: 1fr;
   }
-  .content_wrapper {
-    flex-direction: column;
-  }
-  .btn_wrapper {
-    display: flex;
-    margin-top: 24px;
-  }
-  .balance_wrapper {
-    margin-top: 24px;
-    .balance {
-      width: 100%;
-      width: 167px;
-      height: 70px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+
   .nav {
     margin-bottom: 15px;
     justify-content: flex-start;
@@ -471,37 +373,24 @@ main {
     margin-right: 1rem;
   }
 
-  .popup-wrapper {
-    width: 160px;
-    height: 110px;
-    right: 30px;
-    padding: 9px 0 0 8px;
-    .create-pin {
-      margin-bottom: 5px;
-      p {
-        font-size: $small-text-size;
-      }
-      img {
-        margin-right: 7px;
-      }
-      .close {
-        img {
-          right: -20px;
-          top: -5px;
-        }
-      }
-    }
-  }
   .note-text {
     font-size: 12px;
     font-weight: 400;
     line-height: 15px;
     margin-left: 33px;
   }
+  .notification-wrapper {
+    .alert {
+      right: 30px;
+    }
+  }
+  .menu-nav {
+    z-index: 9;
+  }
 
   .ham-wrapper {
     display: block;
-    margin-right: 5rem;
+    margin-right: 4rem;
   }
   #hamburger {
     display: none;
@@ -527,6 +416,28 @@ main {
     // opacity: 0.9;
     background-color: $heading-text;
     color: #ffffff;
+  }
+
+  .popup-wrapper {
+    width: 160px;
+    height: 110px;
+    right: 30px;
+    padding: 9px 0 0 8px;
+    .create-pin {
+      margin-bottom: 5px;
+      p {
+        font-size: $small-text-size;
+      }
+      img {
+        margin-right: 7px;
+      }
+      .close {
+        img {
+          right: -20px;
+          top: -5px;
+        }
+      }
+    }
   }
 }
 </style>

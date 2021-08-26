@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/_shared.scss";
 .content {
   display: flex;
@@ -114,6 +114,7 @@ form {
     border: 1px solid #dee3eb;
     border-radius: 4px;
     margin: 8px 0 24px 0;
+    padding: 16px;
   }
   label {
     font-size: $label-font-size;

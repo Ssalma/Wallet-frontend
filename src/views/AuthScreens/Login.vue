@@ -11,33 +11,37 @@
         </div>
         <div class="form-card">
           <form>
-            <div>
-              <label for="">Email Address</label>
-              <input type="email" name="" id="" placeholder="Komin@gmail.com" />
-              <div class="input__wrapper">
-                <label for="">Password</label>
-                <input
-                  :type="passwordType"
-                  name=""
-                  id="password"
-                  placeholder="......."
+            <label for="">Email Address</label>
+            <input type="email" name="" id="" placeholder="Komin@gmail.com" />
+            <div class="input__wrapper">
+              <label for="">Password</label>
+              <input
+                :type="passwordType"
+                name=""
+                id="password"
+                placeholder="......."
+              />
+              <span class="input__icon" @click="changeType">
+                <img
+                  v-if="passwordType === 'password'"
+                  src="../../assets/eye-slash.svg"
+                  alt=""
                 />
-                <span class="input__icon" @click="changeType">
-                  <img
-                    v-if="passwordType === 'password'"
-                    src="../../assets/eye-slash.svg"
-                    alt=""
-                  />
-                  <img v-else src="../../assets/eyeopen.svg" alt="" />
-                </span>
-              </div>
-              <p class="question">Forgot Password?</p>
-              <button class="btn" id="login-btn">Log In</button>
-              <p class="question" style="color:#6d7a98">
-                Don't have an account?
-                <span class="question">Register now</span>
-              </p>
+                <img v-else src="../../assets/eyeopen.svg" alt="" />
+              </span>
             </div>
+
+            <router-link class="question" :to="{ name: 'ForgotPassword' }"
+              >Forgot Password?</router-link
+            >
+
+            <button class="btn" id="login-btn">Log In</button>
+            <p class="question" style="color:#6d7a98">
+              Don't have an account?
+              <router-link class="question" :to="{ name: 'Signup' }"
+                >Register now</router-link
+              >
+            </p>
           </form>
         </div>
       </div>
@@ -63,7 +67,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/_shared.scss";
 
 .content {
@@ -120,7 +124,9 @@ form {
 .question {
   color: $blue;
   margin-bottom: 24px;
+  cursor: pointer;
 }
+
 .btn {
   margin-bottom: 24px;
 }
